@@ -1,0 +1,16 @@
+id = "documentation/cross-references"
+body = "./cross-references.md"
+enabled = true
+event = "file"
+exclude_globs = ["*.md"]
+message = "Malformed or non-qualified documentation cross-reference at line ${line}: `${match}`"
+
+[[conditions]]
+field = "file_path"
+operator = "regex_match"
+pattern = '''\.(?:c|cc|cpp|cxx|h|hh|hpp|hxx|inl|ipp|ixx|cppm)$'''
+
+[[conditions]]
+field = "new_text"
+operator = "regex_match"
+pattern = '''@crossref\{(?:\s*|[^}\n]*,[^}\n]*|(?!(?:::|[A-Za-z_]\w*::|Source/))[^}\n]+)\}'''

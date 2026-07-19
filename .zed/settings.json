@@ -1,0 +1,18 @@
+{
+  "load_direnv": "direct",
+  "languages": {
+    "Luau": {
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": [
+            "-"
+          ]
+        }
+      },
+      "language_servers": [
+        "luau-lsp"
+      ]
+    }
+  }
+}
