@@ -1,5 +1,4 @@
 {
-  "load_direnv": "direct",
   "languages": {
     "Luau": {
       "formatter": {

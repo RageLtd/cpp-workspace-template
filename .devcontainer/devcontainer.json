@@ -1,0 +1,27 @@
+{
+  // This is the only file to edit when changing the supplied environment.
+  "name": "Portable C++ and Luau workspace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "args": {
+      // Alpine 3.23 supplies Clang/LLVM 21, CMake, Ninja, Luau, and StyLua.
+      "ALPINE_VERSION": "3.23",
+
+      // luau-lsp is the only tool not supplied by Alpine.
+      "LUAU_LSP_VERSION": "1.69.0",
+      "LUAU_LSP_SHA256_AMD64": "4457aeb690d3c22e04567f38c6259ac259a1673ec022758b9cb81af2a0e66c41",
+      "LUAU_LSP_SHA256_ARM64": "b0c78fe40defe71b9fa6381390a590f2040897980a0cf31f0a23c165ad27ebbb",
+    },
+  },
+  "remoteUser": "dev",
+  "updateRemoteUserUID": true,
+  "init": true,
+  "capAdd": ["SYS_PTRACE"],
+  "securityOpt": ["seccomp=unconfined"],
+  "customizations": {
+    "zed": {
+      "extensions": ["luau"],
+    },
+  },
+}
