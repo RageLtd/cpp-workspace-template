@@ -3,14 +3,32 @@
 ## Rule loading
 
 Before planning or changing code, read every applicable rule under
-[.claude/rules](.claude/rules). Markdown frontmatter `globs` scope a rule to
-matching files. Rules without `globs` apply to the whole repository. A
+[.claude/rules](.claude/rules). Markdown frontmatter `paths` scopes a rule to
+matching files. Rules without `paths` apply to the whole repository. A
 `.enforce.toml` file and the Markdown file named by its `body` field are one
 rule and must remain together.
 
-The `mimir` and `cpp` subtrees are repository-owned rule sets. The C++ rules
-apply to matching project files. If two imported rules conflict, stop and ask
-the developer which rule wins.
+The key is `paths`, not `globs` — Claude Code ignores `globs` entirely, so a
+rule carrying it loads in every session regardless of file type. A bare
+`*.ext` pattern already matches nested files; `**/*.ext` is unnecessary. The
+`exclude_globs` key inside a `.enforce.toml` is a different thing — that one
+belongs to Mimir's rules engine and is spelled correctly as-is.
+
+There are two kinds of rule here, and the difference matters:
+
+- **Vendored** — everything directly under `.claude/rules/` (`coding/`,
+  `quality/`, `safety/`, `tooling/`, `workflow/`). These are copies from the
+  shared `claude-rules` set, listed with their digests in
+  `.claude/rules-lock.json`. **Do not edit them.** A change here is invisible
+  to every other repository and is overwritten on the next sync;
+  `node .claude/rules-check.mjs` fails the build if one is touched. To change
+  one, change it upstream, then re-sync.
+- **Repository-owned** — the `cpp/` subtree. These belong to this project,
+  are absent from the lock, and are yours to edit freely. The C++ rules apply
+  to matching project files.
+
+If a vendored rule and a `cpp/` rule conflict, stop and ask the developer
+which wins — do not silently pick one.
 
 ## Ownership boundary
 

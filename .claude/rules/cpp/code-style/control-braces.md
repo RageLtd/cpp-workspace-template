@@ -1,5 +1,5 @@
 ---
-globs: ["*.c", "*.cc", "*.cpp", "*.cxx", "*.h", "*.hh", "*.hpp", "*.hxx", "*.inl", "*.ipp", "*.ixx", "*.cppm", "*.m", "*.mm", "*.rs", "*.go", "*.java", "*.kt", "*.kts", "*.cs", "*.ts", "*.tsx", "*.js", "*.jsx", "*.mts", "*.mjs", "*.swift", "*.php", "*.rb"]
+paths: ["*.c", "*.cc", "*.cpp", "*.cxx", "*.h", "*.hh", "*.hpp", "*.hxx", "*.inl", "*.ipp", "*.ixx", "*.cppm", "*.m", "*.mm", "*.rs", "*.go", "*.java", "*.kt", "*.kts", "*.cs", "*.ts", "*.tsx", "*.js", "*.jsx", "*.mts", "*.mjs", "*.swift", "*.php", "*.rb"]
 tools: ["Edit", "Write", "MultiEdit"]
 ---
 
